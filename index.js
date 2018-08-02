@@ -20,14 +20,11 @@ function run() {
     ctx.fillStyle = 'black'
 
     for (let i in colours) {
-        // const width = canvas.width / colours.length
-        // ctx.fillRect(i * width, 0, width, canvas.height)
         const offset = i * 40
-        const width = canvas.width - offset * 2
-        const height = canvas.height - offset
+        const radius = Math.min(canvas.width / 2, canvas.height) - offset
 
-        const x = offset + ((frame % points) / points) * width
-        const y = canvas.height - height * Math.sin(((frame % points) / points) * Math.PI)
+        const x = canvas.width / 2 - radius * Math.cos(((frame % points) / points) * Math.PI)
+        const y = canvas.height - radius * Math.sin(((frame % points) / points) * Math.PI)
         colours[i].trail.unshift([x, y])
 
         while (colours[i].trail.length > colours[i].trailLength) colours[i].trail.pop()
@@ -38,6 +35,7 @@ function run() {
             ctx.globalAlpha = 1 - j / colours[i].trailLength
             ctx.fillRect(pos[0] - 20, pos[1], 40, 40)
         }
+
         ctx.globalAlpha = 1
     }
 
