@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d')
 ctx.imageSmoothingEnabled = false
 
 const points = 100
+const colourWidth = 20
 const colours = [
     { colour: '#E70000', trail: [], trailLength: 30 },
     { colour: '#FF8C00', trail: [], trailLength: 30 },
@@ -20,7 +21,7 @@ function run() {
     ctx.fillStyle = 'black'
 
     for (let i in colours) {
-        const offset = i * 40
+        const offset = i * colourWidth * 2
         const radius = Math.min(canvas.width / 2, canvas.height) - offset
 
         const x = canvas.width / 2 - radius * Math.cos(((frame % points) / points) * Math.PI)
@@ -33,7 +34,9 @@ function run() {
             const pos = colours[i].trail[j]
             ctx.fillStyle = colours[i].colour
             ctx.globalAlpha = 1 - j / colours[i].trailLength
-            ctx.fillRect(pos[0] - 20, pos[1], 40, 40)
+            ctx.beginPath()
+            ctx.arc(pos[0], pos[1], colourWidth + 1, 0, 2 * Math.PI, false)
+            ctx.fill()
         }
 
         ctx.globalAlpha = 1
