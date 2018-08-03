@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d')
 ctx.imageSmoothingEnabled = false
 
 const points = 100
+// const speed = 50
 const colourWidth = 20
 const colours = [
     { colour: '#E70000', trail: [], trailLength: 30 },
@@ -13,7 +14,7 @@ const colours = [
     { colour: '#760089', trail: [], trailLength: 30 }
 ]
 
-let frame = 0
+let count = 0
 
 function run() {
     ctx.fillStyle = 'black'
@@ -24,8 +25,10 @@ function run() {
         const offset = i * colourWidth * 2
         const radius = Math.min(canvas.width / 2, canvas.height) - offset
 
-        const x = canvas.width / 2 - radius * Math.cos(((frame % points) / points) * Math.PI)
-        const y = canvas.height - radius * Math.sin(((frame % points) / points) * Math.PI)
+        const angle = ((count % points) / points) * Math.PI
+        // const angle = ((count * speed) / (Math.PI * radius)) % Math.PI
+        const x = canvas.width / 2 - radius * Math.cos(angle)
+        const y = canvas.height - radius * Math.sin(angle)
         colours[i].trail.unshift([x, y])
 
         while (colours[i].trail.length > colours[i].trailLength) colours[i].trail.pop()
@@ -42,7 +45,7 @@ function run() {
         ctx.globalAlpha = 1
     }
 
-    frame++
+    count++
     requestAnimationFrame(run)
 }
 
