@@ -1,0 +1,23 @@
+{
+  "author": "eniallator",
+  "description": "Web art packages",
+  "license": "MIT",
+  "name": "@web-art/root",
+  "packageManager": "yarn@3.8.2",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "app": "yarn workspace @web-art/app",
+    "core": "yarn workspace @web-art/core",
+    "conf": "yarn workspace @web-art/config-parser",
+    "linalg": "yarn workspace @web-art/linear-algebra",
+    "build": "yarn workspaces foreach --verbose --parallel --topological --exclude @web-art/root run build",
+    "typecheck": "yarn workspaces foreach --verbose --parallel --topological --exclude @web-art/root run typecheck",
+    "lint": "yarn workspaces foreach --verbose --parallel --topological --exclude @web-art/root run lint",
+    "findissues": "yarn workspaces foreach --verbose --parallel --topological --exclude @web-art/root run findissues"
+  }
+}
