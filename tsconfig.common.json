@@ -1,9 +1,9 @@
 {
+  "include": ["./packages/*/src"],
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "downlevelIteration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -12,11 +12,12 @@
     "moduleResolution": "Bundler",
     "noErrorTruncation": true,
     "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
     "resolveJsonModule": true,
+    "rewriteRelativeImportExtensions": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "esnext",
-    "types": ["node"]
+    "target": "esnext"
   }
 }

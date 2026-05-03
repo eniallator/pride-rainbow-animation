@@ -1,6 +1,6 @@
-# Pride Rainbow Animation
+# Web-Animation-Template
 
-A html canvas animation of a rainbow being formed
+My template repository for creating web animations
 
 ## Installation
 
